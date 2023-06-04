@@ -18,13 +18,17 @@ class SetManager:
     def __getitem__(self, index):
         return list(self._get_combined_set())[index]
 
-    def __next__(self):
-        return next(iter(self._get_combined_set()))
-
     def _get_combined_set(self):
         combined_set = set()
         for laptop in self.regular_manager:
-            combined_set.update(laptop.favorite_food_set)
+            if isinstance(laptop, BusinessLaptop):
+                combined_set.update(laptop.get_common_themes())
+            elif isinstance(laptop, ConvertibleLaptop):
+                combined_set.update(laptop.get_common_themes())
+            elif isinstance(laptop, GamingLaptop):
+                combined_set.update(laptop.get_common_themes())
+            elif isinstance(laptop, Ultrabook):
+                combined_set.update(laptop.get_common_themes())
         return combined_set
 
 
@@ -65,12 +69,12 @@ print("Checking all and any:")
 print(laptop_manager.all_any_check(lambda laptop: laptop.battery_level > 70))
 
 # Level 2
-print("Iterating over the combined set of favorite foods:")
-for food in set_manager:
-    print(food)
+print("Iterating over the combined set of common themes:")
+for theme in set_manager:
+    print(theme)
 
-print(f"Number of favorite foods: {len(set_manager)}")
-print(f"Favorite food at index 1: {set_manager[1]}")
+print(f"Number of common themes: {len(set_manager)}")
+print(f"Common theme at index 1: {set_manager[1]}")
 
 print("Iterating over the combined set using next():")
 print(next(set_manager))
