@@ -2,13 +2,13 @@ from models.abstract_laptop import AbstractLaptop
 
 
 class ConvertibleLaptop(AbstractLaptop):
-    def __init__(self, model, screenSize, ram, storage, batteryLife, batteryLevel, pen, touchScreen):
-        super().__init__(model, screenSize, ram, storage, batteryLife, batteryLevel)
+    def __init__(self, model, screen_size, ram, storage, battery_life, battery_level, pen, touch_screen):
+        super().__init__(model, screen_size, ram, storage, battery_life, battery_level)
         self.pen = pen
-        self.touchScreen = touchScreen
+        self.touch_screen = touch_screen
 
-    def replaceBattery(self, capacityInHours):
-        self.batteryLevel = capacityInHours
+    def replace_battery(self, capacity_in_hours):
+        self.battery_life = capacity_in_hours
 
     def __str__(self):
-        return f"--- Convertible Laptop ---\n{super().__str__()}\nPen: {self.pen}\nTouch Screen: {self.touchScreen}"
+        return f"--- Convertible Laptop ---\n{super().__str__()}\nPen: {self.pen}\nTouch Screen: {self.touch_screen}"
